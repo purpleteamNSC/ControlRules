@@ -21,7 +21,6 @@ def save_data(filename, data):
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)
 
-# Rota para a página principal (index)
 @app.route('/')
 def index():
     # Carregar os dados
@@ -34,11 +33,18 @@ def index():
     total_regras = len(regras)
     total_associacoes = len(associacoes)
     
+    # Calcular o total de regras não associadas
+    # Para isso, vamos percorrer todas as regras e verificar se elas estão associadas
+    regras_associadas_ids = {associacao['regra_id'] for associacao in associacoes}
+    total_regras_nao_associadas = len([regra for regra in regras if regra['id'] not in regras_associadas_ids])
+    
     # Passar esses dados para o template
     return render_template('index.html', 
                            total_empresas=total_empresas, 
                            total_regras=total_regras, 
-                           total_associacoes=total_associacoes)
+                           total_associacoes=total_associacoes,
+                           total_regras_nao_associadas=total_regras_nao_associadas)
+
 
 
 # Rota para listar empresas
@@ -92,6 +98,24 @@ def delete_empresa(id):
 def list_regras():
     regras = load_data(REGRAS_FILE)
     return render_template('list_regras.html', regras=regras)
+
+# Rota para listar regras nao associadas
+@app.route('/regras_nao_associadas')
+def regras_nao_associadas():
+    # Carregar dados de regras e associações
+    regras = load_data(REGRAS_FILE)
+    associacoes = load_data(ASSOCIACOES_FILE)
+    
+    # Criar um conjunto de ids de regras associadas
+    regras_associadas_ids = {associacao['regra_id'] for associacao in associacoes}
+    
+    # Filtrar regras que não estão associadas
+    regras_nao_associadas = [regra for regra in regras if regra['id'] not in regras_associadas_ids]
+    
+    # Retornar para o template com as regras não associadas
+    return render_template('regras_nao_associadas.html', regras_nao_associadas=regras_nao_associadas)
+
+
 
 # Rota para adicionar regra
 @app.route('/add_regra', methods=['GET', 'POST'])

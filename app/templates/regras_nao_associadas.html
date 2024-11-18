@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="my-4">Regras Não Associadas a Nenhuma Empresa</h1>
+
+        <!-- Tabela para listar as regras não associadas -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome da Regra</th>
+                    <th>Query</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if regras_nao_associadas %}
+                    {% for regra in regras_nao_associadas %}
+                        <tr>
+                            <td>{{ regra.id }}</td>
+                            <td>{{ regra.nome }}</td>
+                            <td>{{ regra.query }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">Nenhuma regra não associada encontrada.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -39,6 +39,18 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Card para Regras Não Associadas -->
+            <div class="col-md-4">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-header">Regras Não Associadas</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ total_regras_nao_associadas }}</h5>
+                        <p class="card-text">Total de regras não associadas a nenhuma empresa.</p>
+                        <a href="{{ url_for('regras_nao_associadas') }}" class="btn btn-light">Ver Regras Não Associadas</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
