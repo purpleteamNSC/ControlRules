@@ -2,7 +2,7 @@
     {
         "id": 1,
         "nome": "mxdr01",
-        "query": "groupby class 123"
+        "query": "groupby class 1234"
     },
     {
         "id": 2,
@@ -11,7 +11,12 @@
     },
     {
         "id": 3,
-        "nome": "mxdr03",
+        "nome": "mxdr04",
         "query": "asdasdasd"
+    },
+    {
+        "id": 4,
+        "nome": "mxdr03",
+        "query": "03"
     }
 ]

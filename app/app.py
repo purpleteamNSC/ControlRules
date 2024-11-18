@@ -21,10 +21,25 @@ def save_data(filename, data):
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)
 
-# Rota para a página inicial
+# Rota para a página principal (index)
 @app.route('/')
 def index():
-    return render_template('base.html')
+    # Carregar os dados
+    empresas = load_data(EMPRESAS_FILE)
+    regras = load_data(REGRAS_FILE)
+    associacoes = load_data(ASSOCIACOES_FILE)
+    
+    # Contar quantos itens existem em cada lista
+    total_empresas = len(empresas)
+    total_regras = len(regras)
+    total_associacoes = len(associacoes)
+    
+    # Passar esses dados para o template
+    return render_template('index.html', 
+                           total_empresas=total_empresas, 
+                           total_regras=total_regras, 
+                           total_associacoes=total_associacoes)
+
 
 # Rota para listar empresas
 @app.route('/empresas')
