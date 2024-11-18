@@ -6,44 +6,172 @@
     <title>Controle de Regras</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/app/static/style.css">
+    <style>
+        /* Estilos da Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .sidebar .active {
+            background-color: #007bff;
+        }
+
+        .sidebar .btn-toggle {
+            display: none;
+        }
+
+        /* Para telas pequenas, a sidebar ficará oculta e será acionada com o botão */
+        @media (max-width: 767px) {
+            .sidebar {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: -250px;
+                z-index: 999;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .sidebar .btn-toggle {
+                display: block;
+            }
+
+            .container-fluid {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        /* Estilização do conteúdo principal */
+        .content {
+            height: 90vh;
+            margin-top: 20px;
+            margin-left: 350px;  /* Para desviar da sidebar */
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: margin-left 0.3s ease;
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Ajustes para telas pequenas */
+        @media (max-width: 767px) {
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .content-container {
+                max-width: 100%;  /* Em telas pequenas, ocupa toda a largura */
+                padding: 15px;
+            }
+
+            .sidebar {
+                top: 0;
+                left: -250px;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 p-4 bg-dark text-white">
-                <h4>Menu</h4>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a href="{{ url_for('index') }}" class="nav-link text-white"><i class="bi bi-speedometer2"></i> Dashboard </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('list_empresas') }}" class="nav-link text-white">Empresas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('list_regras') }}" class="nav-link text-white">Regras</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('list_associacoes') }}" class="nav-link text-white">Associações</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a href="{{ url_for('add_empresa') }}" class="nav-link text-white">Cadastrar Empresa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('add_regra') }}" class="nav-link text-white">Cadastrar Regra</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('add_associacao') }}" class="nav-link text-white">Associar</a>
-                    </li>
-                </ul> -->
+            <div class="sidebar" id="sidebar">
+                <div class="container">
+                    <!-- Botão de alternância para telas pequenas -->
+                    <button class="btn btn-light btn-toggle" id="sidebar-toggle" onclick="toggleSidebar()">
+                        <i class="bi bi-list"></i>
+                    </button>
+
+                    <!-- Links da Sidebar -->
+                    <h4 class="text-center text-white">MXDR</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="{{ url_for('index') }}" class="nav-link text-white"><i class="bi bi-house-door"></i> Dashboard </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('list_empresas') }}" class="nav-link text-white"><i class="bi bi-building"></i> Empresas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('list_regras') }}" class="nav-link text-white"><i class="bi bi-file-earmark-code"></i> Regras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('list_associacoes') }}" class="nav-link text-white"><i class="bi bi-link"></i> Regras Aplicadas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('regras_nao_associadas') }}" class="nav-link text-white"><i class="bi bi-file-earmark-x"></i> Regras não aplicadas</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Conteúdo principal -->
-            <div class="col-md-9 p-4">
-                {% block content %}{% endblock %}
+            <div class="col-md-9 p-4 content">
+                <div class="content-container">
+                    {% block content %}
+                        <h1>Bem-vindo ao Controle de Regras</h1>
+                        <p>Este sistema ajuda a gerenciar empresas, regras e suas associações. Use a sidebar para navegar entre as seções.</p>
+                    {% endblock %}
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Script para alternar a visibilidade da sidebar -->
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

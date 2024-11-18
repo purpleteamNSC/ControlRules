@@ -1,0 +1,60 @@
+/* Estilos para a sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+    transition: all 0.3s;
+}
+
+.sidebar a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+.sidebar .active {
+    background-color: #007bff;
+}
+
+.sidebar .btn-toggle {
+    display: none;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Para telas pequenas, a sidebar ficará oculta */
+@media (max-width: 767px) {
+    .sidebar {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: -250px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .sidebar .btn-toggle {
+        display: block;
+    }
+}

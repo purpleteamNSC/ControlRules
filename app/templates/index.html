@@ -5,49 +5,57 @@
 
         <div class="row">
             <!-- Card para Empresas -->
-            <div class="col-md-4">
-                <div class="card text-white bg-info mb-3">
-                    <div class="card-header">Empresas Cadastradas</div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-info h-100">
+                    <div class="card-header">
+                        <i class="bi bi-building"></i> Empresas Cadastradas
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ total_empresas }}</h5>
-                        <p class="card-text">Total de empresas cadastradas no sistema.</p>
-                        <a href="{{ url_for('list_empresas') }}" class="btn btn-light">Ver Empresas</a>
+                        <p class="card-text text-white">Total de empresas cadastradas no sistema.</p>
+                        <a href="{{ url_for('list_empresas') }}" class="btn btn-light"><i class="bi bi-eye"></i></a>
                     </div>
                 </div>
             </div>
 
             <!-- Card para Regras -->
-            <div class="col-md-4">
-                <div class="card text-white bg-success mb-3">
-                    <div class="card-header">Regras Cadastradas</div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-success h-100">
+                    <div class="card-header">
+                        <i class="bi bi-file-earmark-code"></i> Regras Cadastradas
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ total_regras }}</h5>
-                        <p class="card-text">Total de regras cadastradas no sistema.</p>
-                        <a href="{{ url_for('list_regras') }}" class="btn btn-light">Ver Regras</a>
+                        <p class="card-text text-white">Total de regras cadastradas no sistema.</p>
+                        <a href="{{ url_for('list_regras') }}" class="btn btn-light"><i class="bi bi-eye"></i></a>
                     </div>
                 </div>
             </div>
 
             <!-- Card para Associações -->
-            <div class="col-md-4">
-                <div class="card text-white bg-warning mb-3">
-                    <div class="card-header">Associações de Empresas e Regras</div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-warning h-100">
+                    <div class="card-header">
+                        <i class="bi bi-link"></i> Regras aplicadas
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ total_associacoes }}</h5>
-                        <p class="card-text">Total de associações feitas entre empresas e regras.</p>
-                        <a href="{{ url_for('list_associacoes') }}" class="btn btn-light">Ver Associações</a>
+                        <p class="card-text text-white">Total de regras aplicadas nas empresas</p>
+                        <a href="{{ url_for('list_associacoes') }}" class="btn btn-light"><i class="bi bi-eye"></i></a>
                     </div>
                 </div>
             </div>
 
             <!-- Card para Regras Não Associadas -->
-            <div class="col-md-4">
-                <div class="card text-white bg-danger mb-3">
-                    <div class="card-header">Regras Não Associadas</div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-danger h-100">
+                    <div class="card-header">
+                        <i class="bi bi-file-earmark-x"></i> Regras não aplicadas
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ total_regras_nao_associadas }}</h5>
-                        <p class="card-text">Total de regras não associadas a nenhuma empresa.</p>
-                        <a href="{{ url_for('regras_nao_associadas') }}" class="btn btn-light">Ver Regras Não Associadas</a>
+                        <p class="card-text text-white">Total de regras não aplicadas a nenhuma empresa.</p>
+                        <a href="{{ url_for('regras_nao_associadas') }}" class="btn btn-light"><i class="bi bi-eye"></i></a>
                     </div>
                 </div>
             </div>
