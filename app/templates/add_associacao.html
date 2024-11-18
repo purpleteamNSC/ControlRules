@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Associar Empresa e Regra</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="empresa_id" class="form-label">Empresa</label>
+        <select class="form-select" id="empresa_id" name="empresa_id" required>
+            <option value="" disabled selected>Selecione a Empresa</option>
+            {% for empresa in empresas %}
+            <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="regra_id" class="form-label">Regra</label>
+        <select class="form-select" id="regra_id" name="regra_id" required>
+            <option value="" disabled selected>Selecione a Regra</option>
+            {% for regra in regras %}
+            <option value="{{ regra.id }}">{{ regra.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Associar</button>
+</form>
+{% endblock %}

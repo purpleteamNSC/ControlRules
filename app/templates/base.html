@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Regras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 p-4 bg-dark text-white">
+                <h4>Menu</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{{ url_for('list_empresas') }}" class="nav-link text-white">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('list_regras') }}" class="nav-link text-white">Regras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('list_associacoes') }}" class="nav-link text-white">Associações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('add_empresa') }}" class="nav-link text-white">Cadastrar Empresa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('add_regra') }}" class="nav-link text-white">Cadastrar Regra</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('add_associacao') }}" class="nav-link text-white">Associar</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Conteúdo principal -->
+            <div class="col-md-9 p-4">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

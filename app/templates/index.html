@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="my-4">Empresas e Regras</h2>
+
+<!-- Empresas -->
+<h3>Empresas</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Helix</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for empresa in empresas %}
+        <tr>
+            <td>{{ empresa.nome }}</td>
+            <td>{{ empresa.helix }}</td>
+            <td>
+                <a href="{{ url_for('edit_empresa', id=empresa.id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                <a href="{{ url_for('delete_empresa', id=empresa.id) }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Regras -->
+<h3>Regras</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Query</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for regra in regras %}
+        <tr>
+            <td>{{ regra.nome }}</td>
+            <td>{{ regra.query }}</td>
+            <td>
+                <a href="{{ url_for('edit_regra', id=regra.id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                <a href="{{ url_for('delete_regra', id=regra.id) }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Associações -->
+<h3>Associações</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Empresa</th>
+            <th scope="col">Regra</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for associacao in associacoes %}
+        <tr>
+            <td>{{ associacao.empresa_id }}</td>
+            <td>{{ associacao.regra_id }}</td>
+            <td>
+                <a href="{{ url_for('edit_associacao', id=associacao.empresa_id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                <a href="{{ url_for('delete_associacao', empresa_id=associacao.empresa_id, regra_id=associacao.regra_id) }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

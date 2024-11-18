@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Associações</h1>
+<a href="{{ url_for('add_associacao') }}" class="btn btn-success mb-3">Associar Empresa e Regra</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Regra</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for associacao in associacoes %}
+        <tr>
+            <td>{{ associacao.id }}</td>
+            <td>{{ associacao.empresa_nome }}</td>
+            <td>{{ associacao.regra_nome }}</td>
+            <td>
+                <a href="{{ url_for('delete_associacao', empresa_id=associacao.empresa_id, regra_id=associacao.regra_id) }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

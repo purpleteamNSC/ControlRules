@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "nome": "mxdr01",
+        "query": "groupby class 123"
+    },
+    {
+        "id": 2,
+        "nome": "mxdr02",
+        "query": "class query teste"
+    }
+]

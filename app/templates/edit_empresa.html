@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Editar Empresa</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ empresa.nome }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="helix" class="form-label">Helix</label>
+        <input type="text" class="form-control" id="helix" name="helix" value="{{ empresa.helix }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+{% endblock %}
