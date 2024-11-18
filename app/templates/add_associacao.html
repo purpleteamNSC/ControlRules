@@ -20,6 +20,9 @@
             {% endfor %}
         </select>
     </div>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
     <button type="submit" class="btn btn-primary">Associar</button>
 </form>
 {% endblock %}

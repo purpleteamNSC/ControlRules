@@ -10,6 +10,9 @@
         <label for="query" class="form-label">Query</label>
         <input type="text" class="form-control" id="query" name="query" required>
     </div>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
 {% endblock %}

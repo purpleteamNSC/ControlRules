@@ -10,6 +10,9 @@
         <label for="helix" class="form-label">Helix</label>
         <input type="text" class="form-control" id="helix" name="helix" required>
     </div>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
 {% endblock %}

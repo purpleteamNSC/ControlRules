@@ -8,5 +8,10 @@
         "id": 2,
         "nome": "mxdr02",
         "query": "class query teste"
+    },
+    {
+        "id": 3,
+        "nome": "mxdr03",
+        "query": "asdasdasd"
     }
 ]
